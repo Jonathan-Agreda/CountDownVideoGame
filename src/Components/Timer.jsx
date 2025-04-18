@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 
 
@@ -6,14 +6,22 @@ export const Timer = ({ title, time }) => {
     const [hasLooser, setHasLooser] = useState(false)
     const [hasStart, setHasStart] = useState(false)
 
+    const timerRef = useRef()
+
     const handleStartTime = () => {
         setHasStart(true)
         console.log("Empezar el juego")
-        setTimeout(() => {
+        timerRef.current = setTimeout(() => {
             setHasStart(false)
             console.log("Tiempo terminado")
             setHasLooser(true)
         }, time * 1000)
+    }
+
+    const handleStopTime = () => {
+        clearInterval(timerRef.current)
+        setHasStart(false)
+        console.log("Parar el juego")
     }
 
     return (
@@ -31,7 +39,7 @@ export const Timer = ({ title, time }) => {
                 className="mt-4 px-4 py-2 border-none rounded-md bg-[#12352f]
             text-lg cursor-pointer hover:bg-[#051715] active:bg-[#0d1f1c]"
             >
-                <button onClick={handleStartTime}>
+                <button onClick={hasStart ? handleStopTime : handleStartTime}>
                     {hasStart ? "Parar" : "Empezar"}
                 </button>
             </p>
