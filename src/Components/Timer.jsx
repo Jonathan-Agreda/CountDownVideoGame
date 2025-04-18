@@ -24,6 +24,7 @@ export const Timer = ({ title, time }) => {
         console.log("Parar el juego")
     }
 
+
     return (
         <section
             className="w-[22rem] flex flex-col items-center justify-center p-8 m-8
