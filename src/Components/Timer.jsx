@@ -8,10 +8,12 @@ export const Timer = ({ title, time }) => {
     const [hasStart, setHasStart] = useState(false)
 
     const timerRef = useRef()
+    const dialogModalRef = useRef()
 
     const handleStartTime = () => {
         setHasStart(true)
         timerRef.current = setTimeout(() => {
+            dialogModalRef.current.showModal()
             setHasStart(false)
             setHasLooser(true)
         }, time * 1000)
@@ -25,7 +27,7 @@ export const Timer = ({ title, time }) => {
 
     return (
         <>
-            {hasLooser && <ModalDialog resultGame="perdido" timeTarget={time} />}
+            <ModalDialog ref={dialogModalRef} resultGame="perdido" timeTarget={time} />
             <section
                 className="w-[22rem] flex flex-col items-center justify-center p-8 m-8
         bg-[#691A1A] text-[#edfcfa] shadow-lg rounded-md">

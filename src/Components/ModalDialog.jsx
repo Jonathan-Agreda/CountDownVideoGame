@@ -1,9 +1,11 @@
+import { forwardRef } from "react"
 
-export const ModalDialog = ({ resultGame, timeTarget }) => {
+const ForwardedModalDialog = ({ resultGame, timeTarget }, ref) => {
     const secondsText = (timeTarget > 1 ? "segundos" : "segundo")
     return (
         <>
-            <dialog open
+            <dialog
+                ref={ref}
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-none rounded-lg p-8 bg-[#d7fcf8]">
                 <h2 className="font-mono text-center uppercase font-bold text-4xl mt-2 mb-2">
                     ¡Has {resultGame}!</h2>
@@ -20,3 +22,5 @@ export const ModalDialog = ({ resultGame, timeTarget }) => {
         </>
     )
 }
+
+export const ModalDialog = forwardRef(ForwardedModalDialog)
