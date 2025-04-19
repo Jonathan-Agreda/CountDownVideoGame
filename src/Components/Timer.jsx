@@ -13,7 +13,7 @@ export const Timer = ({ title, time }) => {
     const handleStartTime = () => {
         setHasStart(true)
         timerRef.current = setTimeout(() => {
-            dialogModalRef.current.showModal()
+            dialogModalRef.current.open()
             setHasStart(false)
             setHasLooser(true)
         }, time * 1000)
